@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FilRougeCore.Models
 {
-    internal class User
+    public class User
     {
         public int Id { get; set; }
         [Required]
@@ -30,5 +30,7 @@ namespace FilRougeCore.Models
         public string? PassWord { get; set; }
         [Required]
         public bool IsAdmin { get; set; } = false;
+        [Required]
+        public List<Session> Sessions { get; set; } = new List<Session>();
     }
 }

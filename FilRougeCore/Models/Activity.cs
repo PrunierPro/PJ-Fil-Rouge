@@ -7,18 +7,11 @@ using System.Threading.Tasks;
 
 namespace FilRougeCore.Models
 {
-    public class Room
+    public class Activity
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        public List<Schedule> Schedules { get; set; } = new List<Schedule>();
-        [Required]
         public string? Name { get; set; }
-        [Required]
-        public string? Location { get; set; }
-        [Required]
-        public List<Activity> Activities { get; set; } = new List<Activity>();
-
     }
 }

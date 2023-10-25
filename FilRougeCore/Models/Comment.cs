@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 
 namespace FilRougeCore.Models
 {
-    internal class Comment
+    public class Comment
     {
         //Keys
+        [Key]
         public int Id { get; set; }
         [Required]
         public User User { get; set; }
         [Required]
         public int UserId { get; set; }
+        [Required]
+        public Session Session { get; set; }
+        [Required]
+        public int SessionId { get; set; }
 
         [Required]
         public string? Message { get; set; }

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace FilRougeCore.Models
 {
-    public class Session
+    public class Schedule
     {
-        //Keys
         [Key]
         public int Id { get; set; }
         [Required]
@@ -17,13 +16,11 @@ namespace FilRougeCore.Models
         [Required]
         public int RoomId { get; set; }
         [Required]
-        public List<User> Users { get; set; } = new List<User>();
+        [RegularExpression("^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)$")]
+        public string? Day { get; set; }
         [Required]
-        public List<Comment> Comments { get; set; } = new List<Comment>();
-
+        public DateTime OpenTime { get; set; }
         [Required]
-        public DateTime StartTime { get; set; }
-        [Required]
-        public DateTime EndTime { get; set; }
+        public DateTime CloseTime { get; set; }
     }
 }
