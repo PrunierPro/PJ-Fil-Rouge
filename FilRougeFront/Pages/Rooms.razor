@@ -1,0 +1,50 @@
+﻿@page "/rooms"
+@using System.Net.Http.Json;
+@using System.Collections.Generic;
+@using FilRougeCore.Models;
+@using FilRougeFront.Services;
+
+<h3>Recherche de Salles de Sport</h3>
+
+<p>
+    <label for="localisation">Localisation: </label>
+    <InputText id="localisation" @bind-Value="filtresRecherche.Location" />
+</p>
+
+<!-- Ajoutez ici d'autres filtres de recherche (types d'activités, horaires, etc.) -->
+
+<button @onclick="RechercherSallesDeSport">Rechercher</button>
+
+<div>
+    @if (sallesDeSport != null)
+    {
+        @foreach (var salle in sallesDeSport)
+        {
+            <p>@salle.Name - @salle.Location</p>
+        }
+    }
+</div>
+
+@code {
+    [Inject]
+    private IRoomService roomService { get; set; }
+    private HttpClient Http { get; set; }
+    private FiltresRecherche filtresRecherche = new FiltresRecherche();
+    private List<Room> sallesDeSport;
+
+    private async Task RechercherSallesDeSport()
+    {
+        //  appel à votre API pour rechercher les salles de sport
+        // Utilisez l'objet filtresRecherche pour envoyer les critères de recherche
+         // sallesDeSport = await Http.PostAsJsonAsync<List<Room>>("api/recherchesallesdesport", filtresRecherche);
+
+    }
+
+    public class FiltresRecherche
+    {
+        public string Location{ get; set; }
+
+        // Ajoutez ici d'autres critères de recherche (types d'activités, horaires, etc.)
+    }
+}
+

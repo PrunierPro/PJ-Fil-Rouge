@@ -1,0 +1,89 @@
+﻿
+@inject Blazored.LocalStorage.ILocalStorageService LocalStorage;
+@inject NavigationManager Navigator;
+
+@page "/login"
+@using FilRougeCore.DTOs;
+@using FilRougeCore.Models;
+@using FilRougeFront.Services;
+@using FilRougeFront.DTOs;
+
+<h3>Login</h3>
+
+  @if (!success || LoggedIn is null)
+{
+    <EditForm OnValidSubmit="LoginUser" Model="User">
+        <DataAnnotationsValidator />
+        <div class="form-row">
+            <div class="form-group">
+                <label for="user">Email</label>
+                <InputText class="form-control" id="email" placeholder="Email : " @bind-Value="User.Email" />
+                <small><ValidationMessage For="() => this.User.Email" /></small>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="password">Mot de passe : </label>
+                <InputText class="form-control" id="password" placeholder="Mot de passe" @bind-Value="User.PassWord" />
+                <small><ValidationMessage For="() => this.User.PassWord" /></small>
+            </div>
+        </div>
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary" style="margin-top:10px">Login</button>
+        </div>
+    </EditForm>
+    <h5>Pas de compte? Cliquez ici</h5>
+    <a href="@(Navigator.BaseUri)register" class="btn btn-primary">S'inscrire</a>
+}
+else if(success)
+{
+    <h3>Connexion OK !!! Vous @((LoggedIn.IsAdmin ? "êtes admin" : @"n'êtes pas admin")).</h3>
+    <a href="@Navigator.BaseUri" class="btn btn-success">Retour ...</a>
+} else if(LoggedIn is not null)
+{
+    <h3>Vous etes déjà connecté(e), @LoggedIn.FullName !</h3>
+    <a href="@Navigator.BaseUri" class="btn btn-success">Retour ...</a>
+}
+@if (error)
+{
+    <h4 class="text-danger">Une erreur est survenue!</h4>
+} 
+
+  @code {
+    [Inject]
+    public UserService UserService { get; set; }
+
+    private LoginRequestDTO User = new LoginRequestDTO();
+    private bool success = false;
+    private bool error = false;
+    private User LoggedIn;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var dto = await LocalStorage.GetItemAsync<UserLoginDTO>("user");
+        if(dto is not null) LoggedIn = dto.User;
+        StateHasChanged();
+    }
+
+    private async void LoginUser()
+    {
+        var result = await UserService.Login(User);
+        if (result is null)
+        {
+            error = true;
+            success = false;
+        }
+
+        else
+        {
+            success = true;
+            error = false;
+            LoggedIn = result.User;
+            await LocalStorage.SetItemAsync("user", LoggedIn);
+            await LocalStorage.SetItemAsync("jwt", result.Token);
+        }
+        StateHasChanged();
+
+    }
+}  
+ 
