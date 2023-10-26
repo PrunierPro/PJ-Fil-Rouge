@@ -1,9 +1,9 @@
 ﻿using FilRougeApi.Repositories;
 using FilRougeCore.Models;
+using FilRougeApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
 
 namespace FilRougeApi.Controllers
 {
@@ -59,7 +59,7 @@ namespace FilRougeApi.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = Constants.RoleAdmin)]
-        public async Task<IActionResult> Updateroom(int id, [FromBody] Room room)
+        public async Task<IActionResult> Update(int id, [FromBody] Room room)
         {
             var aniTemp = await _repository.GetById(id);
             if (aniTemp == null)
@@ -74,7 +74,7 @@ namespace FilRougeApi.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = Constants.RoleAdmin)]
-        public async Task<IActionResult> Removeroom(int id)
+        public async Task<IActionResult> Remove(int id)
         {
             var aniTemp = await _repository.GetById(id);
             if (aniTemp == null)
