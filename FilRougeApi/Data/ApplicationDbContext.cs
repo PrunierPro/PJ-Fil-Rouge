@@ -11,6 +11,8 @@ namespace FilRougeApi.Data
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
