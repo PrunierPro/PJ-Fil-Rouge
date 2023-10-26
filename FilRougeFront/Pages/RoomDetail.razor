@@ -1,0 +1,55 @@
+﻿@page "/rooms/{roomId:int}"
+@using FilRougeFront.Services;
+@using FilRougeCore.Models;
+
+<div class="container">
+    <h3>Détails de la Salle de Sport</h3>
+
+    @if (room != null)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">@room.Name</h5>
+                <p class="card-text">Localisation : @room.Location</p>
+                <p class="card-text">Activités : @string.Join(", ", room.Activities.Select(a => a.Name))</p>
+            </div>
+        </div>
+
+        <h4>Horaires</h4>
+        @if (room.Schedules.Any())
+        {
+            <ul>
+                @foreach (var schedule in room.Schedules)
+                {
+                    <li>
+                        <strong>@schedule.Day:</strong>
+                        @schedule.OpenTime - @schedule.CloseTime
+                    </li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>Cette salle n'a pas encore de plages horaires définies.</p>
+        }
+    }
+    else
+    {
+        <p>La salle de sport n'a pas été trouvée.</p>
+    }
+</div>
+
+@code {
+    private Room room;
+
+    [Parameter]
+    public int RoomId { get; set; }
+
+    [Inject]
+    public IRoomService roomService { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        room = await roomService.Get(RoomId);
+    }
+}

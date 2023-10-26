@@ -1,9 +1,146 @@
 ﻿@page "/"
+@inject NavigationManager Navigator;
 
-<PageTitle>Index</PageTitle>
+<PageTitle>Accueil</PageTitle>
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12">
+
+            <!-- Header -->
+            <section id="header" class="text-center my-5">
+                <h1>Gros-Biceps</h1>
+                <nav id="nav">
+                    <!-- Ajoutez ici vos éléments de navigation si nécessaire les potos -->
+                </nav>
+            </section>
+
+            <!-- Banner -->
+            <section id="banner" class="text-center my-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-12 order-md-first">
+                            <a href="#" class="bordered-feature-image">
+                                <img src="images/salut.jpg" alt="" class="img-fluid" />
+                            </a>
+                        </div>
+                       @*   @if (User is not null)
+                        {
+                            <h4>Vous êtes connecté(e) en tant que @User.FullName</h4>
+                            <button type="button" @onclick="LogOut" class="btn btn-danger">Se déconnecter...</button>
+                        } 
+                        else  *@
+                        <div class="col-md-6 col-12">
+                            <!-- Banner Copy (in a card) -->
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-text">Si tu veux perdre ton gros cul, inscris-toi.</p>
+                                    <a href="@(Navigator.BaseUri)login" class="btn btn-primary button-large">Içi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+</div>
+
+<!-- Add a separator line -->
+<hr class="my-5">
+
+<!-- Features -->
+<section id="features" class="bg-secondary text-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-6">
+
+                <!-- Feature #1 -->
+                <div class="card h-100">
+                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Bienvenue sur Gros-Biceps</h2>
+                        <p class="card-text text-dark">C'est une plateforme de réservation en ligne.</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-6">
+
+                <!-- Feature #2 -->
+                <div class="card h-100">
+                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Blablabla</h2>
+                        <p class="card-text text-dark">Parce qu'on aime se faire du mal.</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-6">
+
+                <!-- Feature #3 -->
+                <div class="card h-100">
+                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Salut les zouzou</h2>
+                        <p class="card-text text-dark">Recherche ta salle.</p>
+                        <a href="@(Navigator.BaseUri)rooms" class="btn btn-primary">Içi</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-3 col-6">
+
+                <!-- Feature #4 -->
+                <div class="card h-100">
+                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-body">
+                        <h2 class="card-title text-dark">Et un petit lorem</h2>
+                        <p class="card-text text-dark">Lorem ipsum dolor, je ne comprends pas le latin.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Content -->
+<section id="content" class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4 col-12">
+
+                <!-- Box #1 -->
+                <section>
+                    <header>
+                        <h2>Qui sommes-nous ?</h2>
+                        <h3>Les meilleurs</h3>
+                    </header>
+                    <a href="#" class="feature-image">
+                        <img src="images/photo.webp" alt="" />
+                    </a>
+                    <p>Et encore un ipsum olalala.</p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-secondary text-light py-4">
+    <div class="container text-center">
+        <p>&copy; 2023 Gros-Biceps. Tous droits réservés.</p>
+    </div>
+</footer>
+
+
+
+
