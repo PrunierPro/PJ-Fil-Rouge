@@ -40,7 +40,7 @@ namespace FilRougeApi.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Constants.RoleUser)]
+        [Authorize(Roles = $"{Constants.RoleUser}, {Constants.RoleAdmin}")]
         public async Task<IActionResult> Add([FromBody] Comment comment)
         {
             var commentId = await _repository.Add(comment);
@@ -52,7 +52,7 @@ namespace FilRougeApi.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = Constants.RoleUser)]
+        [Authorize(Roles = $"{Constants.RoleUser}, {Constants.RoleAdmin}")]
         public async Task<IActionResult> Update(int id, [FromBody] Comment comment)
         {
             var aniTemp = await _repository.GetById(id);
@@ -67,7 +67,7 @@ namespace FilRougeApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = Constants.RoleUser)]
+        [Authorize(Roles = $"{Constants.RoleUser}, {Constants.RoleAdmin}")]
         public async Task<IActionResult> Remove(int id)
         {
             var aniTemp = await _repository.GetById(id);

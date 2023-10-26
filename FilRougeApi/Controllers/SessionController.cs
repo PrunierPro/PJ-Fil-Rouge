@@ -40,7 +40,7 @@ namespace FilRougeApi.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = Constants.RoleUser)]
+        [Authorize(Roles = $"{Constants.RoleUser}, {Constants.RoleAdmin}")]
         public async Task<IActionResult> Add([FromBody] Session session)
         {
             var sessionId = await _repository.Add(session);
@@ -52,7 +52,7 @@ namespace FilRougeApi.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = Constants.RoleUser)]
+        [Authorize(Roles = $"{Constants.RoleUser}, {Constants.RoleAdmin}")]
         public async Task<IActionResult> Update(int id, [FromBody] Session session)
         {
             var aniTemp = await _repository.GetById(id);
@@ -67,7 +67,7 @@ namespace FilRougeApi.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = Constants.RoleUser)]
+        [Authorize(Roles = $"{Constants.RoleUser}, {Constants.RoleAdmin}")]
         public async Task<IActionResult> Remove(int id)
         {
             var aniTemp = await _repository.GetById(id);
