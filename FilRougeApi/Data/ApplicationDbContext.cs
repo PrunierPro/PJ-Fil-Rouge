@@ -21,7 +21,7 @@ namespace FilRougeApi.Data
                 Id = 1,
                 FirstName = "Root",
                 LastName = "ROOT",
-                PhoneNumber = "01 01 01 01 01",
+                PhoneNumber = "0101010101",
                 Address = "2 rue tartempion 55555 Bidule",
                 Email = "root@sportscorp.com",
                 PassWord = "UEFzczAwKytsYSBjbMOpIHN1cGVyIHNlY3LDqHRlIGRlIGxhIHBva2Vtb24gYXBp", // PAss00++
@@ -32,7 +32,7 @@ namespace FilRougeApi.Data
                 Id = 2,
                 FirstName = "Default",
                 LastName = "User",
-                PhoneNumber = "02 02 02 02 02",
+                PhoneNumber = "0202020202",
                 Address = "10 rue tartempion 55555 Turlututu",
                 Email = "defaultuser@email.com",
                 PassWord = "UEFzczAwKytsYSBjbMOpIHN1cGVyIHNlY3LDqHRlIGRlIGxhIHBva2Vtb24gYXBp", //PAss00++
