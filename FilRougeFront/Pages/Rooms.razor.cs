@@ -3,7 +3,6 @@ using FilRougeFront.DTOs;
 using FilRougeFront.Services;
 using Microsoft.AspNetCore.Components;
 using System.Text.RegularExpressions;
-using static System.Net.WebRequestMethods;
 
 namespace FilRougeFront.Pages
 {

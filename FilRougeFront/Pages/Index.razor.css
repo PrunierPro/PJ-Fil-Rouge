@@ -1,4 +1,6 @@
-﻿.button-large {
+﻿
+
+.button-large {
     background-image: -moz-linear-gradient(top, #ed391b, #ce1a00);
     background-image: -webkit-linear-gradient(top, #ed391b, #ce1a00);
     background-image: -ms-linear-gradient(top, #ed391b, #ce1a00);
@@ -35,3 +37,26 @@
         background-color: #ce1a00;
         box-shadow: inset 0px 0px 0px 1px rgba(0, 0, 0, 0.75), inset 0px 2px 0px 0px rgba(255, 192, 192, 0.5), inset 0px 0px 0px 2px rgba(255, 96, 96, 0.85), 3px 3px 3px 1px rgba(0, 0, 0, 0.15);
     }
+
+#header {
+    background-image: url(images/logo.jpg); 
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center center;
+    padding: 0; 
+    margin: 0 auto;
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+#logo {
+    width: auto; 
+    height: 100%; 
+    display: block;
+}
+
+
+
+

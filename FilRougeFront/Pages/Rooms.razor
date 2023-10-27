@@ -82,9 +82,41 @@
         </EditForm>
 
     }
-
-
     <div class="row">
+        <div class="col-8">
+            @LoadingMessage
+
+            <div class="row p-2">
+                @for (var i = 0; i < sallesDeSport.Count; i += 3)
+                {
+                    <div class="row p-2">
+                        @for (var j = i; j < Math.Min(i + 3, sallesDeSport.Count); j++)
+                        {
+                            <div class="col-md-4">
+                                <div class="card mb-3">
+                                    <img src="@sallesDeSport[j].ImageURL" class="card-img-top" alt="Image de la salle de sport" />
+                                    <div class="card-body">
+                                        <h5 class="card-title text-warning text-uppercase font-weight-bold">@sallesDeSport[j].Name</h5>
+                                        <p class="card-text text-primary font-weight-bold">@sallesDeSport[j].Location</p>
+                                        <a class="btn btn-primary" href="/Room/@sallesDeSport[j].Id">Détails</a>
+                                        @if (IsAdminMode)
+                                        {
+                                            <button class="btn btn-primary" @onclick="() => EditRoom(sallesDeSport[j])">Modifier<i class="bi bi-pencil-square"></i></button>
+                                            <button class="btn btn-danger" @onclick="() => DeleteRoom(sallesDeSport[j].Id)">Supprimer<i class="bi bi-trash3"></i></button>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+            
+        </div>
+    </div>
+
+
+   @*  <div class="row">
         <div class="col-8">
             @LoadingMessage
             @foreach (var salle in sallesDeSport)
@@ -97,16 +129,27 @@
                         <h5 class="text-primary font-weight-bold">@salle.Location</h5>
                     </div>
 
-                    @if (IsAdminMode)
-                    {
-                        <button class="col btn text-primary border-primary" @onclick="() => EditRoom(salle)">Crée<i class="bi bi-pencil-square"></i></button>
-                        <button class="col btn btn-danger" @onclick="() => DeleteRoom(salle.Id)">Supprimer<i class="bi bi-trash3"></i></button>
-                    }
+                    <a class="btn btn-primary" href="/rooms/@salle.Id">Détails</a>
+                    <div class="col-2">
+              
+                        <div class="row p-2">
+                            @if (IsAdminMode)
+                            {
+                                <button class="col btn text-primary border-primary" @onclick="() => EditRoom(salle)">Crée<i class="bi bi-pencil-square"></i></button>
+                                <button class="col btn btn-danger" @onclick="() => DeleteRoom(salle.Id)">Supprimer<i class="bi bi-trash3"></i></button>
+                            }
+                        </div>
+                    </div>
                 </div>
 
-
+                <!-- Affichage de l'image -->
+                <div class="row">
+                    <div class="col">
+                        <img src="@salle.ImageURL" alt="Image de la salle de sport" />
+                    </div>
+                </div>
             }
         </div>
 
-    </div>
+    </div> *@
 </div>
