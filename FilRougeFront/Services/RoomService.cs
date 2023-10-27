@@ -17,7 +17,7 @@ namespace FilRougeFront.Services
         public RoomService(HttpClient httpClient, IConfiguration configuration, ILocalStorageService localStorage)
         {
             _httpClient = httpClient;
-            _baseApiRoute = configuration["APIUrlHttp"] + "/api/rooms";
+            _baseApiRoute = configuration["APIUrlHttp"] + "/api/room";
             _localStorage = localStorage;
         }
 
