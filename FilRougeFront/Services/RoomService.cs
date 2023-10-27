@@ -1,5 +1,6 @@
 ﻿using Blazored.LocalStorage;
 using FilRougeCore.Models;
+using FilRougeFront.DTOs;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -65,5 +66,28 @@ namespace FilRougeFront.Services
         {
             return await _localStorage.GetItemAsync<string>("jwt");
         }
+
+        public async Task Put(RoomEditDTO? roomToEdit)
+        {
+            if (roomToEdit != null)
+            {
+                var stringRoom = JsonConvert.SerializeObject(roomToEdit);
+                var request = new HttpRequestMessage(HttpMethod.Put, _baseApiRoute);
+                request.Content = new StringContent(stringRoom, Encoding.UTF8, "application/json");
+                await SendRequest(request);
+            }
+        }
+
+        public async Task Post(RoomEditDTO? roomToEdit)
+        {
+            if (roomToEdit != null)
+            {
+                var stringRoom = JsonConvert.SerializeObject(roomToEdit);
+                var request = new HttpRequestMessage(HttpMethod.Post, _baseApiRoute);
+                request.Content = new StringContent(stringRoom, Encoding.UTF8, "application/json");
+                await SendRequest(request);
+            }
+        }
+
     }
 }
