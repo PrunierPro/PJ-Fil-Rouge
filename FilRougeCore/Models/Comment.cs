@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,11 +13,11 @@ namespace FilRougeCore.Models
         //Keys
         [Key]
         public int Id { get; set; }
-        [Required]
+        [AllowNull]
         public User User { get; set; }
         [Required]
         public int UserId { get; set; }
-        [Required]
+        [AllowNull]
         public Session Session { get; set; }
         [Required]
         public int SessionId { get; set; }
