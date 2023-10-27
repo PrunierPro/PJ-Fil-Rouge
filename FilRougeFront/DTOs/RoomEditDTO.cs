@@ -18,9 +18,9 @@ namespace FilRougeFront.DTOs
         [Required(ErrorMessage = "Le lien vers l'image est requis.")]
         public string? ImageURL { get; set; }
 
-        public List<Schedule>? Schedules { get; set; }
+        public List<Schedule>? Schedules { get; set; } = new List<Schedule>();
 
-        public List<Activity>? Activities { get; set; }
+        public List<Activity>? Activities { get; set; } = new List<Activity>();
     }
 }
 

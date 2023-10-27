@@ -17,14 +17,23 @@ namespace FilRougeFront.Services
         public RoomService(HttpClient httpClient, IConfiguration configuration, ILocalStorageService localStorage)
         {
             _httpClient = httpClient;
-            _baseApiRoute = configuration["APIUrlHttp"] + "/api/room";
+            _baseApiRoute = configuration["APIUrlHttp"] + "api/Room";
             _localStorage = localStorage;
         }
 
         public async Task<List<Room>> GetAll()
         {
-            var result = await _httpClient.GetFromJsonAsync<List<Room>>(_baseApiRoute);
-            return result!;
+            try
+            {
+                var response = await _httpClient.GetFromJsonAsync<List<Room>>(_baseApiRoute).ConfigureAwait(false);
+
+                return response ?? new List<Room>();
+            }
+            catch (Exception ex)
+            {
+                // Loggez l'exception ici
+                throw new ApplicationException($"Une erreur s'est produite lors de la récupération des données : {ex.Message}", ex);
+            }
         }
 
         public async Task<Room?> Get(int id)
