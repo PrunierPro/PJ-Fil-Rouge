@@ -14,10 +14,9 @@ namespace FilRougeFront.Pages
         public IRoomService roomService { get; set; }
 #nullable enable
         private string? LoadingMessage { get; set; }
-        private bool IsAdminMode { get; set; }
-        private FiltresRecherche filtresRecherche = new FiltresRecherche();
+        private bool IsAdminMode { get; set; }      
         private RoomEditDTO? RoomToEdit { get; set; } = null;
-        private List<Room> sallesDeSport;
+        private List<Room> sallesDeSport { get; set; } = new();
         private EditionModes EditionMode { get; set; }
         private enum EditionModes
         {
@@ -43,6 +42,9 @@ namespace FilRougeFront.Pages
                 Id = room.Id,
                 Name = room.Name,
                 Location = room.Location,
+                ImageURL = Regex.Split(room.ImageURL!, @"https:\/\/localhost:\d{1,4}").Last(),
+                Activities = room.Activities,
+                Schedules = room.Schedules
             };
             EditionMode = EditionModes.Put;
         }
@@ -65,10 +67,27 @@ namespace FilRougeFront.Pages
             switch (EditionMode)
             {
                 case EditionModes.Post:
-                    await roomService.Post(RoomToEdit);
+                    var room2 = new Room()
+                    {
+                        Name = RoomToEdit.Name,
+                        Location = RoomToEdit.Location,
+                        ImageURL = Regex.Split(RoomToEdit.ImageURL!, @"https:\/\/localhost:\d{1,4}").Last(),
+                        Activities = RoomToEdit.Activities,
+                        Schedules = RoomToEdit.Schedules
+
+                    };
+                    sallesDeSport.Add(room2);
+                    await roomService.Post(room2);
                     break;
                 case EditionModes.Put:
-                    await roomService.Put(RoomToEdit);
+                    var room = sallesDeSport.Find(room => room.Id == RoomToEdit!.Id)!;
+                    room.Name = RoomToEdit!.Name;
+                    room.Location = RoomToEdit!.Location;
+                    room.ImageURL = Regex.Split(RoomToEdit.ImageURL!, @"https:\/\/localhost:\d{1,4}").Last();
+                    room.Activities = RoomToEdit!.Activities; 
+                    room.Schedules = RoomToEdit!.Schedules; 
+
+                    await roomService.Put(room);
                     break;
                 default:
                     break;
@@ -84,23 +103,6 @@ namespace FilRougeFront.Pages
             Navigator.NavigateTo(Navigator.Uri, forceLoad: true); //actualiser après déconnexion
         }
     }
-    //private async Task RechercherSallesDeSport()
-    //{
-    //    //  appel à votre API pour rechercher les salles de sport
-    //    // Utilisez l'objet filtresRecherche pour envoyer les critères de recherche
-    //     sallesDeSport = await Http.PostAsJsonAsync<List<Room>>("api/recherchesallesdesport", filtresRecherche);
-
-    //}
-
-    public class FiltresRecherche
-    {
-        public string Location { get; set; }
-
-        // Ajoutez ici d'autres critères de recherche (types d'activités, horaires, etc.)
-    }
-
-
-
 }
 
 
