@@ -56,12 +56,12 @@ namespace FilRougeApi.Repositories
             if (commentFromDb == null)
                 return false;
 
-            if (commentFromDb.User != comment.User)
-                commentFromDb.User = comment.User;
+            //if (commentFromDb.User != comment.User)
+            //    commentFromDb.User = comment.User;
             if (commentFromDb.UserId != comment.UserId)
                 commentFromDb.UserId = comment.UserId;            
-            if (commentFromDb.Session != comment.Session)
-                commentFromDb.Session = comment.Session;
+            //if (commentFromDb.Session != comment.Session)
+            //    commentFromDb.Session = comment.Session;
             if (commentFromDb.SessionId != comment.SessionId)
                 commentFromDb.SessionId = comment.SessionId;
             if (commentFromDb.Message != comment.Message)
