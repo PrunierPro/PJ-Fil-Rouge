@@ -4,12 +4,12 @@ namespace FilRougeApi.Builders
 {
     public class UserBuilder
     {
-        private string firstName;
-        private string lastName;
-        private string phoneNumber;
-        private string address;
-        private string email;
-        private string passWord;
+        private string? firstName;
+        private string? lastName;
+        private string? phoneNumber;
+        private string? address;
+        private string? email;
+        private string? passWord;
         private bool isAdmin;
 
         public UserBuilder FirstName(string firstname)

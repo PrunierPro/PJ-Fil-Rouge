@@ -16,10 +16,10 @@ namespace FilRougeFront.DTOs
         public string? Location { get; set; }
 
         [Required(ErrorMessage = "Les horaires sont requis.")]
-        public List<Schedule> Schedules { get; set; }
+        public List<Schedule>? Schedules { get; set; }
 
         [Required(ErrorMessage = "Les activités sont requises.")]
-        public List<ActivityCore> Activities { get; set; }
+        public List<ActivityCore>? Activities { get; set; }
     }
 }
 

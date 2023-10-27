@@ -13,8 +13,8 @@ namespace FilRougeCore.Models
         //Keys
         [Key]
         public int Id { get; set; }
-        [AllowNull]
-        public Room Room { get; set; }
+        //[AllowNull]
+        //public Room Room { get; set; }
         [Required]
         public int RoomId { get; set; }
         public List<User> Users { get; set; } = new List<User>();

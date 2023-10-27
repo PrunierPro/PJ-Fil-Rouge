@@ -26,7 +26,7 @@ namespace FilRougeFront.Pages
         }
 
 
-        private User User { get; set; }
+        private User? User { get; set; }
         protected override async Task OnInitializedAsync()
         {
             LoadingMessage = "Récupération des Salle !";

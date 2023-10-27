@@ -9,8 +9,8 @@ namespace FilRougeTests
     [TestClass]
     public class ActivityTest
     {
-        private IRepository<FilRougeCore.Models.Activity> _repository;
-        private ActivityBuilder activityBuilder;
+        private IRepository<FilRougeCore.Models.Activity>? _repository;
+        private ActivityBuilder? activityBuilder;
 
         [TestInitialize]
         public void SetUp()
