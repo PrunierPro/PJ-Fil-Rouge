@@ -5,6 +5,28 @@
 <PageTitle>Accueil</PageTitle>
 
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#gros-biceps">Gros Biceps</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#features">Features</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#application">Application</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 
 <div class="container">
     <div class="row justify-content-center">
@@ -12,28 +34,28 @@
 
             <!-- Header -->
             <section id="header" class="text-center my-5">
-                <h1>Gros-Biceps</h1>
+
+                <img id="logo">
+
                 <nav id="nav">
                     <!-- Ajoutez ici vos éléments de navigation si nécessaire les potos -->
                 </nav>
             </section>
 
             <!-- Banner -->
-            <section id="banner" class="text-center my-5">
+            <section id="gros-biceps" class="text-center my-5">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6 col-12 order-md-first">
-                            <a href="#" class="bordered-feature-image">
-                                <img src="images/salut.jpg" alt="" class="img-fluid" />
-                            </a>
-                        </div>               
-                        
+                            <img src="images/salut.jpg" alt="" class="img-fluid img-gros-biceps" />
+                        </div>
+
                         <div class="col-md-6 col-12">
                             <!-- Banner Copy (in a card) -->
-                            <div class="card">
+                            <div id="card-header" class="card">
                                 <div class="card-body">
-                                    <p class="card-text">Si tu veux perdre ton gros cul, inscris-toi.</p>
-                                    <a href="@(Navigator.BaseUri)login" class="btn btn-primary button-large">Içi</a>
+                                    <h2 class="card-title text-dark">Bienvenue sur Gros-Biceps</h2>
+                                    <p class="card-text text-dark text-gros-biceps">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean varius finibus bibendum. Nunc id cursus sapien. Mauris eu lectus ac eros tristique blandit eget finibus augue. Nunc finibus ante libero, sed lacinia arcu sodales a. Maecenas ut erat mauris. Aliquam vitae risus ut lorem suscipit feugiat sit amet eu nulla. Sed risus tellus, scelerisque a convallis ac, dictum eu tellus. Aliquam fermentum diam et urna hendrerit, sit amet sodales magna elementum. Donec fringilla consectetur urna vitae aliquam. Nulla imperdiet iaculis sapien sit amet tincidunt. Vestibulum id hendrerit lectus. Morbi tellus dui, pharetra id ipsum ut, interdum bibendum turpis. Donec lacus tellus, accumsan a diam vitae, hendrerit tincidunt nulla. Nullam lorem est, lobortis eu lorem sit amet, pretium condimentum quam. Pellentesque vitae purus tincidunt, aliquam ipsum sit amet, euismod nunc.</p>
                                 </div>
                             </div>
                         </div>
@@ -45,21 +67,22 @@
     </div>
 </div>
 
-<!-- Add a separator line -->
-<hr class="my-5">
-
 <!-- Features -->
-<section id="features" class="bg-secondary text-light py-5">
+<section id="features" class="text-light py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-3 col-6">
 
                 <!-- Feature #1 -->
                 <div class="card h-100">
-                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-img">
+                        <img src="images/fesses.jpg" class="card-img-top" alt="" />
+                    </div>
                     <div class="card-body">
-                        <h2 class="card-title text-dark">Bienvenue sur Gros-Biceps</h2>
-                        <p class="card-text text-dark">C'est une plateforme de réservation en ligne.</p>
+                        <h2 class="card-title text-dark text-center">Inscris toi ici pour perdre ton gros cul</h2>
+                        <a href="@(Navigator.BaseUri)login">
+                            <button>Inscription</button>
+                        </a>
                     </div>
                 </div>
 
@@ -68,10 +91,14 @@
 
                 <!-- Feature #2 -->
                 <div class="card h-100">
-                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-img">
+                        <img src="images/pitbull.jpg" class="card-img-top" alt="" />
+                    </div>
                     <div class="card-body">
-                        <h2 class="card-title text-dark">Blablabla</h2>
-                        <p class="card-text text-dark">Parce qu'on aime se faire du mal.</p>
+                        <h2 class="card-title text-dark text-center">Abonnements Gros-Biceps disponibles</h2>
+                        <a href="">
+                            <button>Abonnements</button>
+                        </a>
                     </div>
                 </div>
 
@@ -80,11 +107,14 @@
 
                 <!-- Feature #3 -->
                 <div class="card h-100">
-                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-img">
+                        <img src="images/salle.jpg" class="card-img-top" alt="" />
+                    </div>
                     <div class="card-body">
-                        <h2 class="card-title text-dark">Salut les zouzou</h2>
-                        <p class="card-text text-dark">Recherche ta salle.</p>
-                        <a href="@(Navigator.BaseUri)rooms" class="btn btn-primary">Içi</a>
+                        <h2 class="card-title text-dark text-center">Recherche ta salle près de chez toi</h2>
+                        <a href="@(Navigator.BaseUri)rooms">
+                            <button>Salles disponibles</button>
+                        </a>
                     </div>
                 </div>
 
@@ -93,10 +123,14 @@
 
                 <!-- Feature #4 -->
                 <div class="card h-100">
-                    <img src="images/biceps.jpg" class="card-img-top" alt="" />
+                    <div class="card-img">
+                        <img src="images/brain.jpg" class="card-img-top" alt="" />
+                    </div>
                     <div class="card-body">
-                        <h2 class="card-title text-dark">Et un petit lorem</h2>
-                        <p class="card-text text-dark">Lorem ipsum dolor, je ne comprends pas le latin.</p>
+                        <h2 class="card-title text-dark text-center">Cerveau avant biceps ! Lis nos actualités</h2>
+                        <a href="">
+                            <button>Blog</button>
+                        </a>
                     </div>
                 </div>
 
@@ -108,32 +142,35 @@
 
 
 <!-- Content -->
-<section id="content" class="py-5">
+
+<section id="application" class="text-center my-5">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-4 col-12">
+        <div class="row">
+            <div class="col-md-6 col-12 order-md-first">
+                <img src="images/mobile.png" alt="" class="img-fluid img-gros-biceps" />
+            </div>
 
-                <!-- Box #1 -->
-                <section>
-                    <header>
-                        <h2>Qui sommes-nous ?</h2>
-                        <h3>Les meilleurs</h3>
-                    </header>
-                    <a href="#" class="feature-image">
-                        <img src="images/photo.webp" alt="" />
-                    </a>
-                    <p>Et encore un ipsum olalala.</p>
-                </section>
-
+            <div class="col-md-6 col-12">
+                <!-- Banner Copy (in a card) -->
+                <div id="card-header" class="card">
+                    <div class="card-body">
+                        <h2><span>Application gratuite</span> pour vous accompagner</h2>
+                        <ul class="avantages-application">
+                            <li>Prout</li>
+                            <li>Prouti</li>
+                            <li>Prouta</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Footer -->
-<footer class="bg-secondary text-light py-4">
+<footer class="py-4 footer">
     <div class="container text-center">
-        <p>&copy; 2023 Gros-Biceps. Tous droits réservés.</p>
+        <p class="text-dark">&copy; 2023 Gros-Biceps. Tous droits réservés.</p>
     </div>
 </footer>
 

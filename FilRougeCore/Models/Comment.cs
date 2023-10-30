@@ -13,12 +13,10 @@ namespace FilRougeCore.Models
         //Keys
         [Key]
         public int Id { get; set; }
-        //[AllowNull]
-        //public User User { get; set; }
+        public User? User { get; set; }
         [Required]
         public int UserId { get; set; }
-        //[AllowNull]
-        //public Session Session { get; set; }
+        public Session? Session { get; set; }
         [Required]
         public int SessionId { get; set; }
 
