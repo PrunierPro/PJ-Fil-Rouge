@@ -9,114 +9,129 @@
 @inject Blazored.LocalStorage.ILocalStorageService _localStorage;
 @inject NavigationManager Navigator;
 
-<h3>Recherche de Salles de Sport</h3>
+
+
 <div class="container-fluid">
+    <header class="text-center">
+      
+        <img src="images/logo.jpg" alt="Logo de votre site" class="big-logo">
+    </header>
+
 
     @if (User is not null)
     {
-        <h4>Vous êtes connecté(e) en tant que @User.FullName</h4>
+        <h4 class="text-center">Vous êtes connecté(e) en tant que @User.FullName</h4>
         <button type="button" @onclick="LogOut" class="btn btn-danger">Se déconnecter...</button>
     }
-    else
+    @* else
     {
-        <a href="@(Navigator.BaseUri)login" class="btn btn-success">Se connecter</a>
-    }
+    <a href="@(Navigator.BaseUri)login" class="btn btn-success">Se connecter</a>
+    } *@
 
     @if (User is not null && IsAdminMode)
-    { }
-    <div class="row">
-        <button class="btn btn-success" @onclick="AddRoom"><i class="bi bi-plus-square"></i>&ensp; Ajouter une salle</button>
-    </div>
-
-    @if (RoomToEdit != null)
     {
-        <EditForm OnValidSubmit="SubmitRoom" Model="RoomToEdit">
-            <DataAnnotationsValidator />
+        <div class="row">
+            <button class="btn btn-success" @onclick="AddRoom"><i class="bi bi-plus-square"></i>&ensp; Ajouter une salle</button>
+        </div>
 
-            <div class="form-row">
-                <div class="form-group" style="width:100%">
-                    <label for="name">Nom:</label>
-                    <InputText class="form-control" id="name" placeholder="Saisir le nom" @bind-Value="RoomToEdit.Name" />
-                    <ValidationMessage For="() => RoomToEdit.Name" />
-                </div>
-            </div>
+        @if (RoomToEdit != null)
+        {
+            <div class="row">
+                <div class="col-md-6">
+                    <EditForm OnValidSubmit="SubmitRoom" Model="RoomToEdit">
+                        <DataAnnotationsValidator />
 
-            <div class="form-row">
-                <div class="form-group" style="width:100%">
-                    <label for="location">Localisation :</label>
-                    <InputText class="form-control" id="location" placeholder="Saisir la localisation" @bind-Value="RoomToEdit.Location" />
-                    <ValidationMessage For="() => RoomToEdit.Location" />
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group" style="width:100%">
-                    <label for="imageUrl">Lien vers l'image:</label>
-                    <InputText class="form-control" id="imageUrl" placeholder="Saisir le lien vers l'image" @bind-Value="RoomToEdit.ImageURL" />
-                    <small><ValidationMessage For="() => this.RoomToEdit.ImageURL" /></small>
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group" style="width:100%">
-                    <label for="activities">Activités :</label>
-                    @foreach (var activity in RoomToEdit.Activities)
-                    {
-                        <div>
-                            @activity.Name
+                        <div class="form-group">
+                            <label for="name">Nom:</label>
+                            <InputText class="form-control" id="name" placeholder="Saisir le nom" @bind-Value="RoomToEdit.Name" />
+                            <ValidationMessage For="() => RoomToEdit.Name" />
                         </div>
-                    }
-                </div>
-            </div>
-            <div class="form-row">
-                <div class="form-group" style="width:100%">
-                    <label for="schedules">Horaires :</label>
-                    @foreach (var schedule in RoomToEdit.Schedules)
-                    {
-                        <div>
-                            <strong>Jour :</strong> @schedule.Day<br />
-                            <strong>Heure d'ouverture :</strong> @schedule.OpenTime<br />
-                            <strong>Heure de fermeture :</strong> @schedule.CloseTime<br />
+
+                        <div class="form-group">
+                            <label for="location">Localisation :</label>
+                            <InputText class="form-control" id="location" placeholder="Saisir la localisation" @bind-Value="RoomToEdit.Location" />
+                            <ValidationMessage For="() => RoomToEdit.Location" />
                         </div>
-                    }
+
+                        <div class="form-group">
+                            <label for="imageUrl">Lien vers l'image:</label>
+                            <InputText class="form-control" id="imageUrl" placeholder="Saisir le lien vers l'image" @bind-Value="RoomToEdit.ImageURL" />
+                            <small><ValidationMessage For="() => this.RoomToEdit.ImageURL" /></small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="activities">Activités :</label>
+                            @foreach (var activity in RoomToEdit.Activities)
+                            {
+                                <div>
+                                    @activity.Name
+                                </div>
+                            }
+                        </div>
+
+                        <div class="form-group">
+                            <label for="schedules">Horaires :</label>
+                            @foreach (var schedule in RoomToEdit.Schedules)
+                            {
+                                <div>
+                                    <strong>Jour :</strong> @schedule.Day<br />
+                                    <strong>Heure d'ouverture :</strong> @schedule.OpenTime<br />
+                                    <strong>Heure de fermeture :</strong> @schedule.CloseTime<br />
+                                </div>
+                            }
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Validation</button>
+                    </EditForm>
                 </div>
             </div>
-
-            <div class="form-row">
-                <button type="submit" class="btn btn-primary">Validation</button>
-            </div>
-        </EditForm>
-
+        }
     }
+    <div class="club-group-header">
+        <h2 class="text-center main-title">
+            " Clubs "
+            <span class="title-opposite"> à proximité</span>
+        </h2>
+    </div>
     <div class="row">
-        <div class="col-8">
-            @LoadingMessage
 
-            <div class="row p-2">
-                @for (var i = 0; i < sallesDeSport.Count; i += 3)
-                {
-                    <div class="row p-2">
-                        @for (var j = i; j < Math.Min(i + 3, sallesDeSport.Count); j++)
-                        {
-                            <div class="col-md-4">
-                                <div class="card mb-3">
-                                    <img src="@sallesDeSport[j].ImageURL" class="card-img-top" alt="Image de la salle de sport" />
-                                    <div class="card-body">
-                                        <h5 class="card-title text-warning text-uppercase font-weight-bold">@sallesDeSport[j].Name</h5>
-                                        <p class="card-text text-primary font-weight-bold">@sallesDeSport[j].Location</p>
-                                        <a class="btn btn-primary" href="/Room/@sallesDeSport[j].Id">Détails</a>
-                                        @if (IsAdminMode)
-                                        {
-                                            <button class="btn btn-primary" @onclick="() => EditRoom(sallesDeSport[j])">Modifier<i class="bi bi-pencil-square"></i></button>
-                                            <button class="btn btn-danger" @onclick="() => DeleteRoom(sallesDeSport[j].Id)">Supprimer<i class="bi bi-trash3"></i></button>
-                                        }
+        @foreach (var room in sallesDeSport)
+        {
+            <div class="col-md-4">
+                <div class="card mb-3">
+
+                    <section class="club-group-wrapper">
+
+                        <div class="tile-wrapper">
+                            <div class="club-tile-content">
+                                <div class="image">
+                                    <img src="@room.ImageURL" class="card-img-top" alt="Image de la salle de sport" />
+                                </div>
+                                <div class="card-body properties">
+                                    <div class="street">
+                                        <h5 class="card-title text-warning text-uppercase font-weight-bold">@room.Name</h5>
+                                    </div>
+                                    <div class="city">
+
+                                        <p class="card-text text-primary font-weight-bold">@room.Location</p>
+                                    </div>
+                                    <div class="label-wrapper">
+                                        <a class="btn btn-primary trainer-tile_tag " href="/Room/@room.Id">Détails</a>
+                                        <div class="row p-2">
+                                            @if (IsAdminMode)
+                                            {
+                                                <button class="btn btn-primary trainer-tile_tag" @onclick="() => EditRoom(room)">Modifier<i class="bi bi-pencil-square"></i></button>
+                                                <button class="btn btn-danger trainer-tile_tag" @onclick="() => DeleteRoom(room.Id)">Supprimer<i class="bi bi-trash3"></i></button>
+                                            }
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        }
-                    </div>
-                }
+                        </div>
+                    </section>
+                </div>
             </div>
+        }
 
-        </div>
     </div>
-
 </div>

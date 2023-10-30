@@ -1,0 +1,168 @@
+﻿.navbar {
+    background-color: hsl(236, 32%, 26%);
+}
+
+
+.custom-navbar {
+    background-color: hsl(236, 32%, 26%);
+}
+
+.club-group-wrapper {
+    position: relative;
+    max-width: 1920px;
+    padding: 0;
+    background-color: transparent;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.club-group-header {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    max-width: 1320px;
+    margin: 0 auto 54px;
+    width: auto;
+}
+
+.club-group-wrapper .main-title {
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-size: 32px;
+    line-height: 36px;
+}
+
+.main-title .title-opposite, .main-title .title-opposite--gray {
+    text-shadow: -1px -1px 0 #2d2d2d, 1px -1px 0 #2d2d2d, -1px 1px 0 #2d2d2d, 1px 1px 0 #2d2d2d;
+}
+
+.main-title .title-opposite {
+    color: #fff;
+}
+
+.club-group-wrapper .link-wrapper, .club-group-wrapper .tile-wrapper {
+    max-width: 1320px;
+    margin: auto;
+    width: auto;
+}
+
+.club-group-wrapper .tile-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.properties, .club-tile .properties {
+    background-color: #fff;
+    padding: 16px;
+    position: relative;
+    z-index: 2;
+    max-width: 311px;
+    min-height: 120px;
+    margin-left: auto;
+    margin-top: -60px;
+}
+
+.club-tile .properties {
+    text-transform: none;
+}
+
+    .club-tile .properties .street {
+        font-size: 20px;
+        line-height: 26px;
+        margin-bottom: 6px;
+        font-family: HeadingProTreble-ExtraBold,sans-serif;
+    }
+
+    .club-tile .properties .city {
+        font-size: 13px;
+        line-height: 28px;
+    }
+
+    .properties .label-wrapper, .club-tile .properties .label-wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-top: 20px;
+        min-height: 170px;
+    }
+
+.trainer-tile__tag {
+    padding: 7px 7px 6px;
+    background-color: #fff;
+    border: 1px solid #2d2d2d;
+    border-radius: 5px;
+    font-family: HeadingProTreble-ExtraBold,sans-serif;
+    font-size: 10px;
+    line-height: 1;
+    text-transform: uppercase;
+    align-self: baseline;
+    white-space: nowrap;
+}
+
+ button {
+    z-index: 1;
+    position: relative;
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    padding: 0.5em 1em;
+    outline: none;
+    border: none;
+    background-color: hsl(236, 32%, 26%);
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+}
+
+    button::after {
+        content: '';
+        z-index: -1;
+        background-color: hsla(0, 0%, 100%, 0.2);
+        position: absolute;
+        top: -50%;
+        left: 80px;
+        bottom: -50%;
+        width: 1.25em;
+        transform: translate3d(-525%, 0, 0) rotate(35deg);
+    }
+
+  button:hover::after {
+        transition: transform 0.45s ease-in-out;
+        transform: translate3d(800%, 0, 0) rotate(35deg);
+    }
+
+
+.btn {
+    z-index: 1;
+    position: relative;
+    font-size: inherit;
+    font-family: inherit;
+    color: white;
+    padding: 0.5em 1em;
+    outline: none;
+    border: none;
+    background-color: hsl(236, 32%, 26%);
+    overflow: hidden;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn::after {
+    content: '';
+    z-index: -1;
+    background-color: hsla(0, 0%, 100%, 0.2);
+    position: absolute;
+    top: -50%;
+    left: 80px;
+    bottom: -50%;
+    width: 1.25em;
+    transform: translate3d(-525%, 0, 0) rotate(35deg);
+}
+
+.btn:hover::after {
+    transition: transform 0.45s ease-in-out;
+    transform: translate3d(800%, 0, 0) rotate(35deg);
+}
