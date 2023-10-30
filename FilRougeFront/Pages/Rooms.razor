@@ -17,6 +17,10 @@
         <h4>Vous êtes connecté(e) en tant que @User.FullName</h4>
         <button type="button" @onclick="LogOut" class="btn btn-danger">Se déconnecter...</button>
     }
+    else
+    {
+        <a href="@(Navigator.BaseUri)login" class="btn btn-success">Se connecter</a>
+    }
 
     @if (User is not null && IsAdminMode)
     { }
@@ -111,45 +115,8 @@
                     </div>
                 }
             </div>
-            
+
         </div>
     </div>
 
-
-   @*  <div class="row">
-        <div class="col-8">
-            @LoadingMessage
-            @foreach (var salle in sallesDeSport)
-            {
-                <div class="row p-2">
-                    <div class="col">
-                        <h5 class="text-warning text-uppercase font-weight-bold">@salle.Name</h5>
-                    </div>
-                    <div class="col-2">
-                        <h5 class="text-primary font-weight-bold">@salle.Location</h5>
-                    </div>
-
-                    <a class="btn btn-primary" href="/rooms/@salle.Id">Détails</a>
-                    <div class="col-2">
-              
-                        <div class="row p-2">
-                            @if (IsAdminMode)
-                            {
-                                <button class="col btn text-primary border-primary" @onclick="() => EditRoom(salle)">Crée<i class="bi bi-pencil-square"></i></button>
-                                <button class="col btn btn-danger" @onclick="() => DeleteRoom(salle.Id)">Supprimer<i class="bi bi-trash3"></i></button>
-                            }
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Affichage de l'image -->
-                <div class="row">
-                    <div class="col">
-                        <img src="@salle.ImageURL" alt="Image de la salle de sport" />
-                    </div>
-                </div>
-            }
-        </div>
-
-    </div> *@
 </div>

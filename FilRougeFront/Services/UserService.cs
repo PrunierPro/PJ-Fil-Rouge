@@ -13,7 +13,7 @@ namespace FilRougeFront.Services
         public UserService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
-            _baseApiRoute = configuration["APIUrlHttp"] + "api/Authentication";
+            _baseApiRoute = configuration["APIUrlHttp"] + "/api/Authentication";
         }
 
         public async Task<bool> Register(User user)

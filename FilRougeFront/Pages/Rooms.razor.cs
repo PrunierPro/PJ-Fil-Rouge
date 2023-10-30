@@ -68,7 +68,7 @@ namespace FilRougeFront.Pages
                 case EditionModes.Post:
                     var room2 = new Room()
                     {
-                        Name = RoomToEdit.Name,
+                        Name = RoomToEdit!.Name,
                         Location = RoomToEdit.Location,
                         ImageURL = Regex.Split(RoomToEdit.ImageURL!, @"https:\/\/localhost:\d{1,4}").Last(),
                         Activities = RoomToEdit.Activities,
