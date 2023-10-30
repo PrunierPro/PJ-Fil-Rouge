@@ -1,0 +1,40 @@
+﻿@page "/session/{sessionId:int}"
+@using FilRougeCore.Models;
+@using FilRougeFront.Services;
+@inject Blazored.LocalStorage.ILocalStorageService _localStorage;
+
+@if (LoadingMessage.Equals(""))
+{
+    
+} else
+{
+    <h4>@LoadingMessage</h4>
+}
+
+@code {
+
+    [Parameter]
+    public int sessionId { get; set; }
+
+    private Session? Model { get; set; }
+
+    private User? User { get; set; }
+
+    [Inject]
+    public SessionService sessionService { get; set; }
+    [Inject]
+    public UserService userService { get; set; }
+    [Inject]
+    public CommentService commentService { get; set; }
+
+    public string? LoadingMessage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        LoadingMessage = "Chargement...";
+        Model = await sessionService.Get(sessionId);
+        User = await _localStorage.GetItemAsync<User>("user");
+        LoadingMessage = "";
+    }
+
+}

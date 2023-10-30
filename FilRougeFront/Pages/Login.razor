@@ -1,5 +1,4 @@
-﻿
-@inject Blazored.LocalStorage.ILocalStorageService LocalStorage;
+﻿@inject Blazored.LocalStorage.ILocalStorageService LocalStorage;
 @inject NavigationManager Navigator;
 
 @page "/login"
@@ -52,7 +51,7 @@
     </div>
 </div>
 
-  @code {
+@code {
     [Inject]
     public UserService UserService { get; set; }
 
@@ -64,7 +63,7 @@
     protected override async Task OnInitializedAsync()
     {
         var dto = await LocalStorage.GetItemAsync<UserLoginDTO>("user");
-        if(dto is not null) LoggedIn = dto.User;
+        if (dto is not null) LoggedIn = dto.User;
         StateHasChanged();
     }
 
@@ -88,5 +87,4 @@
         StateHasChanged();
 
     }
-}  
- 
+}

@@ -26,12 +26,18 @@ namespace FilRougeFront.Services
         {
             var result = await _httpClient.PostAsJsonAsync(_baseApiRoute + $"/Login", user);
             if (result.IsSuccessStatusCode)
-           {
-               var dto = await result.Content.ReadFromJsonAsync<UserLoginDTO>();
-               return dto;
+            {
+                var dto = await result.Content.ReadFromJsonAsync<UserLoginDTO>();
+                return dto;
             }
             return null;
 
+        }
+
+        public async Task<User> Get(int id)
+        {
+            var result = await _httpClient.GetFromJsonAsync<User>(_baseApiRoute + $"/User/{id}");
+            return result;
         }
     }
 }

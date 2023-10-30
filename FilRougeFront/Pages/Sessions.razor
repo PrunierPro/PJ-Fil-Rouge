@@ -1,0 +1,54 @@
+﻿@page "/sessions"
+@using FilRougeCore.Models;
+@using FilRougeFront.Services;
+@inject Blazored.LocalStorage.ILocalStorageService _localStorage;
+@inject NavigationManager Navigator;
+
+<h3>Séances</h3>
+<table>
+    <tr>
+        <th>No.</th>
+        <th>Salle</th>
+        <th>Date</th>
+        <th>Heure de début</th>
+        <th>Heure de fin</th>
+    </tr>
+    @if (LoadingMessage.Equals(""))
+    {
+        @for (int i = 0; i < SessionsList.Count; i++)
+        {
+            Session Model = SessionsList[i];
+            <tr>
+                <td><a href="@(Navigator.BaseUri)Session/@(Model.Id)">Séance No. @Model.Id</a></td>
+                <td>@Model.Room.Name</td>
+                <td>@(Model.StartTime.Date.ToShortDateString())</td>
+                <td>@(Model.StartTime.Date.ToShortTimeString())</td>
+                <td>@(Model.EndTime.Date.ToShortTimeString())</td>
+            </tr>
+        }
+    } else
+    {
+        <p>@LoadingMessage</p>
+    }
+</table>
+
+
+@code {
+
+    private List<Session> Models { get; set; }
+
+    [Inject]
+    public SessionService sessionService { get; set; }
+
+    private string? LoadingMessage { get; set; }
+
+    private List<Session> SessionsList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        LoadingMessage = "Récupération des séances...";
+        SessionsList = await sessionService.GetAll();
+        LoadingMessage = "";
+    }
+
+}

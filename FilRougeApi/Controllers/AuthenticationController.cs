@@ -81,5 +81,16 @@ namespace FilRougeApi.Controllers
         }
 
         // possible d'ajouter les actions de crud des users ici ou dans un controlleur UserController
+        [HttpGet("User")]
+        public async Task<ActionResult> GetAll()
+        {
+            return Ok(await _userRepository.GetAll());
+        }
+
+        [HttpGet("User/{id}")]
+        public async Task<ActionResult> GetById(int id)
+        {
+            return Ok(await _userRepository.GetById(id));
+        }
     }
 }
