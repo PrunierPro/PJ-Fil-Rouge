@@ -33,11 +33,11 @@ namespace FilRougeApi.Controllers
             return Ok(room);
         }
 
-        [HttpGet("activity/{activity}")]
+        /*[HttpGet("activity/{activity}")]
         public async Task<IActionResult> GetByActivity(string activity)
         {
             return Ok(await _repository.GetAll(r => r.Activities.FindAll(a => a.Name == activity).Count > 0));
-        }
+        }*/
 
         [HttpGet("location/{location}")]
         public async Task<IActionResult> GetByLocation(string location)

@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace FilRougeApi.Extension
 {
@@ -15,8 +16,12 @@ namespace FilRougeApi.Extension
     {
         public static void InjectDependancies(this WebApplicationBuilder builder)
         {
-
             builder.Services.AddControllers();
+
+            builder.Services.AddControllersWithViews().AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            });
 
             builder.AddSwagger();
 

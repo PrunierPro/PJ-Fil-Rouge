@@ -31,17 +31,17 @@ namespace FilRougeApi.Repositories
 
         public async Task<Schedule?> Get(Expression<Func<Schedule, bool>> predicate)
         {
-            return await _dbContext.Schedules.FirstOrDefaultAsync(predicate);
+            return await _dbContext.Schedules.Include(s => s.Room).FirstOrDefaultAsync(predicate);
         }
 
         public async Task<List<Schedule>> GetAll()
         {
-            return await _dbContext.Schedules.ToListAsync();
+            return await _dbContext.Schedules.Include(s => s.Room).ToListAsync();
         }
 
         public async Task<List<Schedule>> GetAll(Expression<Func<Schedule, bool>> predicate)
         {
-            return await _dbContext.Schedules.Where(predicate).ToListAsync();
+            return await _dbContext.Schedules.Include(s => s.Room).Where(predicate).ToListAsync();
         }
 
         public async Task<Schedule?> GetById(int id)
