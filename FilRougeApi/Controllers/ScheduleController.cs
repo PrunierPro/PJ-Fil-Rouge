@@ -51,7 +51,7 @@ namespace FilRougeApi.Controllers
         {
             var scheduleId = await _repository.Add(schedule);
 
-            if (scheduleId > 1)
+            if (scheduleId > 0)
                 return CreatedAtAction(nameof(GetAll), "schedule added");
 
             return BadRequest("Something went wrong");

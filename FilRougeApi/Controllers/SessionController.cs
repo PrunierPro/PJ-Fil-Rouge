@@ -45,7 +45,7 @@ namespace FilRougeApi.Controllers
         {
             var sessionId = await _repository.Add(session);
 
-            if (sessionId > 1)
+            if (sessionId > 0)
                 return CreatedAtAction(nameof(GetAll), "session added");
 
             return BadRequest("Something went wrong");

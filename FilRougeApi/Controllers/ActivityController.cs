@@ -39,7 +39,7 @@ namespace FilRougeApi.Controllers
         {
             var activityId = await _repository.Add(activity);
 
-            if (activityId > 1)
+            if (activityId > 0)
                 return CreatedAtAction(nameof(GetAll), "activity added");
 
             return BadRequest("Something went wrong");

@@ -51,7 +51,7 @@ namespace FilRougeApi.Controllers
         {
             var roomId = await _repository.Add(room);
 
-            if (roomId > 1)
+            if (roomId > 0)
                 return CreatedAtAction(nameof(GetAll), "room added");
 
             return BadRequest("Something went wrong");

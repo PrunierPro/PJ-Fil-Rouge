@@ -45,7 +45,7 @@ namespace FilRougeApi.Controllers
         {
             var commentId = await _repository.Add(comment);
 
-            if (commentId > 1)
+            if (commentId > 0)
                 return CreatedAtAction(nameof(GetAll), "comment added");
 
             return BadRequest("Something went wrong");
