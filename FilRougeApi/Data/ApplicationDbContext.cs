@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FilRougeCore.Models;
+using FilRougeCore.Data;
 
 namespace FilRougeApi.Data
 {
@@ -38,13 +39,20 @@ namespace FilRougeApi.Data
                 PassWord = "UEFzczAwKytsYSBjbMOpIHN1cGVyIHNlY3LDqHRlIGRlIGxhIHBva2Vtb24gYXBp", //PAss00++
                 IsAdmin = false
             };
-            //modelBuilder.Entity<User>().HasMany(e => e.Sessions).WithMany(e => e.Users);
+            modelBuilder.Entity<User>().HasMany(e => e.Sessions).WithMany(e => e.Users);
             modelBuilder.Entity<Session>().HasMany(e => e.Users).WithMany(e => e.Sessions);
-            //modelBuilder.Entity<Session>().HasMany(e => e.Comments).WithOne(e => e.Session).HasForeignKey(e => e.SessionId).HasPrincipalKey(e => e.Id);
-            //modelBuilder.Entity<Room>().HasMany(e => e.Schedules).WithOne(e => e.Room).HasForeignKey(e => e.RoomId).HasPrincipalKey(e => e.Id);
+            modelBuilder.Entity<Session>().HasMany(e => e.Comments).WithOne(e => e.Session).HasForeignKey(e => e.SessionId).HasPrincipalKey(e => e.Id);
+            modelBuilder.Entity<Room>().HasMany(e => e.Schedules).WithOne(e => e.Room).HasForeignKey(e => e.RoomId).HasPrincipalKey(e => e.Id);
             modelBuilder.Entity<Room>().HasMany(e => e.Activities).WithMany(e => e.Rooms);
+
             modelBuilder.Entity<User>().HasData(adminRoot);
             modelBuilder.Entity<User>().HasData(defaultUser);
+            
+            modelBuilder.Entity<Room>().HasData(InitialRoom.rooms);
+            modelBuilder.Entity<Activity>().HasData(InitialRoom.activities);
+            modelBuilder.Entity<Schedule>().HasData(InitialRoom.schedules);
+            modelBuilder.Entity<Session>().HasData(InitialRoom.sessions);
+            modelBuilder.Entity<Comment>().HasData(InitialRoom.comments);
         }
     }
 }
