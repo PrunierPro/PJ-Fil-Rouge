@@ -12,8 +12,7 @@ namespace FilRougeCore.Models
     {
         [Key]
         public int Id { get; set; }
-        [AllowNull]
-        public Room Room { get; set; }
+        public Room? Room { get; set; }
         [Required]
         public int RoomId { get; set; }
         [Required]
