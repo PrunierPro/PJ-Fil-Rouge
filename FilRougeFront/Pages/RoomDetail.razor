@@ -1,25 +1,34 @@
 ﻿@page "/Room/{roomId:int}"
 @using FilRougeCore.Models;
 @using FilRougeFront.Services;
-@inject RoomService roomService
 
-<h3>Détails de la salle de sport</h3>
+<div class="container">
+    <h3>Détails de la salle de sport</h3>
 
-@if (room != null)
-{
-    <h4>Nom de la salle : @room.Name</h4>
-    <p>Localisation : @room.Location</p>
-    <p>Image : <img src="@room.ImageURL" alt="Image de la salle de sport" /></p>
-    
-}
-else
-{
-    <p>Salle de sport introuvable.</p>
-}
-
+    @if (room != null)
+    {
+        <div class="card">
+            <h4>Nom de la salle : @room.Name</h4>
+            <p>Localisation : @room.Location</p>
+            <p>Image : <img src="@room.ImageURL" alt="Image de la salle de sport" /></p>
+            <p>Activité : @room.Activities</p>
+            <p>Horaires : @room.Schedules</p>
+        </div>
+    }
+    else
+    {
+        <p>Salle de sport introuvable.</p>
+    }
+</div>
 @code {
+
     private Room room;
-    [Parameter] public int roomId { get; set; }
+
+    [Parameter]
+    public int roomId { get; set; }
+
+    [Inject]
+    public IRoomService roomService { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
