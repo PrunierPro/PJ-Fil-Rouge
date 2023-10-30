@@ -11,7 +11,11 @@
             <h4>Nom de la salle : @room.Name</h4>
             <p>Localisation : @room.Location</p>
             <p>Image : <img src="@room.ImageURL" alt="Image de la salle de sport" /></p>
-            <p>Activité : @room.Activities</p>
+            <p>Activités : </p>
+            @foreach (var item in @room.Activities)
+            {
+                <p> " - " + item.Name</p>
+            }
             <p>Horaires : @room.Schedules</p>
         </div>
     }
