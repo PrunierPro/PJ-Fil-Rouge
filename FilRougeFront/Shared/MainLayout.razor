@@ -1,13 +1,17 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-   
+    <div class="sidebar">
+        <NavMenu />
+    </div>
 
 
     <main>
-        <NavBar />
-        <article class="custom" style="padding-left: 0 !important; padding-right: 0 !important;">
+        
+
+        <article class="content px-4">
             @Body
         </article>
     </main>
 </div>
+
