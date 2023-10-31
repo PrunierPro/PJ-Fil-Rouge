@@ -4,42 +4,51 @@
 @inject Blazored.LocalStorage.ILocalStorageService _localStorage;
 @inject NavigationManager Navigator;
 
-<h3>Utilisateur</h3>
-<div class="card">
-   <div class="card-header">
-       @Model.FullName
-   </div>
-   <div class="card-body">
-       <ul class="list-group list-group-flush">
-           <li class="list-group-item">@Model.PhoneNumber</li>
-           <li class="list-group-item">@Model.Address</li>
-       </ul>
-        @if(LoggedUser is not null && LoggedUser.Id == Model.Id)
-        {
-            <button class="btn btn-danger" onclick="LogOut">Se déconnecter</button>
-        }
+@if(Model is not null)
+{
+    <div class="card">
+        <div class="card-header">
+            @Model.FullName
+        </div>
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@Model.PhoneNumber</li>
+                <li class="list-group-item">@Model.Address</li>
+            </ul>
+            @if (LoggedUser is not null && LoggedUser.Id == Model.Id)
+            {
+                <button class="btn btn-danger" @onclick="LogOut">Se déconnecter</button>
+            }
+        </div>
     </div>
-</div>
-<div>
-    <h4>Séances</h4>
-    @if(Model.Sessions.Count > 0)
-    {
-        @for(int i = 0; i < Model.Sessions.Count; i++)
+    <div>
+        <h4>Séances</h4>
+        @if (Model.Sessions.Count > 0)
         {
-            Session tmp = Model.Sessions[i];
-            <a href="@(Navigator.BaseUri)Session/@(tmp.Id)">Séance No. @tmp.Id</a>
+            @for (int i = 0; i < Model.Sessions.Count; i++)
+            {
+                Session tmp = Model.Sessions[i];
+                <a href="@(Navigator.BaseUri)Session/@(tmp.Id)">Séance No. @tmp.Id</a>
+            }
         }
-    } else
-    {
-        <p>Cet utilisateur n'est inscrit à aucune séances.</p>
-    }
+        else
+        {
+            <p>Cet utilisateur n'est inscrit à aucune séances.</p>
+        }
 
-</div>
+    </div>
+} else
+{
+    <p>@LoadingMessage</p>
+}
+
 
 @code {
     private User? LoggedUser { get; set; }
 
     private User Model { get; set; }
+
+    private string LoadingMessage = "Chargement...";
 
     [Parameter]
     public int userId { get; set; }
@@ -51,10 +60,12 @@
     {
         LoggedUser = await _localStorage.GetItemAsync<User>("user");
         Model = await userService.Get(userId);
+        LoadingMessage = "";
     }
 
     private async Task LogOut()
     {
         await _localStorage.RemoveItemAsync("user");
+        Navigator.NavigateTo(Navigator.BaseUri + "/login", forceLoad: true);
     }
 }

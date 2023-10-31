@@ -1,40 +1,87 @@
 ﻿@page "/session/{sessionId:int}"
 @using FilRougeCore.Models;
+@using FilRougeFront.DTOs;
 @using FilRougeFront.Services;
 @inject Blazored.LocalStorage.ILocalStorageService _localStorage;
+@inject NavigationManager Navigator;
 
 @if (LoadingMessage.Equals(""))
 {
-    
-} else
+    <div>
+        <h3>Séance No. @Model.Id</h3>
+        <h5><a href="@(Navigator.BaseUri)Room/@(Model.Room.Id)">Salle @Model.Room.Name</a></h5>
+        <h5>Participants: </h5>
+        <ul>
+            @for (int i = 0; i < Model.Users.Count; i++)
+            {
+                User tmp = Model.Users[i];
+                <li><a href="@(Navigator.BaseUri)User/@(tmp.Id)">@tmp.FullName</a></li>
+            }
+        </ul>
+        <h5>Commentaires: </h5>
+        <ul>
+            @for (int i = 0; i < Model.Comments.Count; i++)
+            {
+                Comment tmp = Model.Comments[i];
+                <div class="card">
+                    <div class="card-header">
+                        <a href="@(Navigator.BaseUri)User/@(tmp.UserId)">@tmp.User.FullName</a>
+                    </div>
+                    <div class="card-body">
+                        @{
+                            int remaining = 5 - tmp.Rating;
+                            <span>
+                                @for (int j = 0; j < tmp.Rating; j++)
+                                {
+                                    <span class="oi oi-star text-warning" />
+                                }
+                                @for (int j = 0; j < remaining; j++)
+                                {
+                                    <span class="oi oi-star text-muted" />
+                                }
+                            </span>
+                        }
+                        <p>@tmp.Message</p>
+                        @if(tmp.User.Id == User.Id)
+                        {
+                            <button class="btn btn-danger" @onclick="() => DeleteComment(tmp.Id)">Supprimer</button>
+                        }
+                    </div>
+                </div>
+            }
+        </ul>
+        @if(Model.Users.Find(u => u.Id == User.Id) is not null)
+        {
+           <button class="btn btn-primary" @onclick="AddComment">Ajouter un commentaire</button>
+            @if(CommentEdit is not null)
+            {
+                <EditForm OnValidSubmit="SubmitComment" Model="CommentEdit">
+                    <DataAnnotationsValidator />
+
+                    <div class="form-row">
+                        <div class="form-group" style="width:100%">
+                            <label for="rating">Note:</label>
+                            <InputNumber class="form-control" id="rating" placeholder=5 @bind-Value="CommentEdit.Rating" />
+                            <ValidationMessage For="() => CommentEdit.Rating" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" style="width:100%">
+                            <label for="message">Message:</label>
+                            <InputTextArea class="form-control" id="message" placeholder="Lorem ipsum dolor sit amet..." @bind-Value="CommentEdit.Message" />
+                            <ValidationMessage For="() => CommentEdit.Message" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <button type="submit" class="btn btn-primary">Poster</button>
+                    </div>
+                </EditForm>
+            }
+        }
+    </div>
+}
+else
 {
     <h4>@LoadingMessage</h4>
-}
-
-@code {
-
-    [Parameter]
-    public int sessionId { get; set; }
-
-    private Session? Model { get; set; }
-
-    private User? User { get; set; }
-
-    [Inject]
-    public SessionService sessionService { get; set; }
-    [Inject]
-    public UserService userService { get; set; }
-    [Inject]
-    public CommentService commentService { get; set; }
-
-    public string? LoadingMessage { get; set; }
-
-    protected override async Task OnInitializedAsync()
-    {
-        LoadingMessage = "Chargement...";
-        Model = await sessionService.Get(sessionId);
-        User = await _localStorage.GetItemAsync<User>("user");
-        LoadingMessage = "";
-    }
-
 }

@@ -14,6 +14,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<SessionService>();
+builder.Services.AddScoped<CommentService>();
 
 builder.Services.AddBlazoredLocalStorage();
 

@@ -49,7 +49,7 @@ namespace FilRougeFront.Services
         public async Task<bool> Put(Session session)
         {
             var stringSession = JsonConvert.SerializeObject(session);
-            var request = new HttpRequestMessage(HttpMethod.Put, _baseApiRoute);
+            var request = new HttpRequestMessage(HttpMethod.Put, _baseApiRoute + $"/{session.Id}");
             request.Content = new StringContent(stringSession, Encoding.UTF8, "application/json");
             return await SendRequest(request);
         }

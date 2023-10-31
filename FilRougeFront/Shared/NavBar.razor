@@ -40,9 +40,4 @@
     {
         User = await _localStorage.GetItemAsync<User>("user");
     }
-
-    private async Task LogOut()
-    {
-        await _localStorage.RemoveItemAsync("user");
-    }
 }

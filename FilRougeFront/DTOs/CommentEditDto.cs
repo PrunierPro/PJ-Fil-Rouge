@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FilRougeFront.DTOs
 {
-    public class CommentEditDto
+    public class CommentEditDTO
     {
         [Required]
         public int Id { get; set; }
@@ -11,7 +11,6 @@ namespace FilRougeFront.DTOs
         public int UserId { get; set; }
         [Required]
         public int SessionId { get; set; }
-
         [Required]
         public string? Message { get; set; }
         [RangeAttribute(0, 5)]
