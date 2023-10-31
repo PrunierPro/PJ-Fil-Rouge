@@ -102,6 +102,7 @@
     white-space: nowrap;
 }
 
+/**************** Boutton ****************/
  button {
     z-index: 1;
     position: relative;
@@ -166,3 +167,77 @@
     transition: transform 0.45s ease-in-out;
     transform: translate3d(800%, 0, 0) rotate(35deg);
 }
+
+/************* Card *******/
+.card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+    border: 2px solid transparent; 
+}
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border: 2px solid #007BFF; 
+        z-index: 1;
+    }
+
+
+/******* bannière publicitaire ***********/
+.mobile-ad-banner {
+    background-color: #ffaa00;
+    text-align: center;
+    padding: 20px 0;
+    color: #ff9900; /* Couleur du texte de la bannière */
+    transition: background-color 0.3s, color 0.3s; /* Transition en douceur des couleurs */
+}
+
+    .mobile-ad-banner a {
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin: 10px 0;
+    }
+
+    .mobile-ad-banner:hover {
+        background-color: #00bbff; /* Nouvelle couleur de fond au survol */
+        color: #007BFF; /* Nouvelle couleur du texte au survol */
+    }
+
+/************ Style du Footer *****************/
+.footer {
+    background: rgb(0,172,255);
+    background: linear-gradient(90deg, rgba(0,172,255,1) 21%, rgba(9,9,121,1) 37%, rgba(2,0,36,1) 97%);
+    color: #fff;
+    padding: 20px 0;
+}
+
+   
+    .footer a {
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+    
+    .footer h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    
+    .footer address p {
+        margin: 0;
+    }
+
+    
+    .footer hr {
+        border-color: #007BFF;
+        margin: 10px 0;
+    }
+
+   
+    .footer p.text-center {
+        font-size: 0.8rem;
+        margin: 0;
+    }

@@ -21,7 +21,9 @@
     @if (User is not null)
     {
         <h4 class="text-center">Vous êtes connecté(e) en tant que @User.FullName</h4>
-        <button type="button" @onclick="LogOut" class="btn btn-danger">Se déconnecter...</button>
+        <div class="row text-center">
+            <button class="btn btn-danger btn-sm" @onclick="LogOut"><i class="bi bi-box-arrow-right"></i>&ensp; Se déconnecter</button>
+        </div>
     }
     @* else
     {
@@ -30,8 +32,8 @@
 
     @if (User is not null && IsAdminMode)
     {
-        <div class="row">
-            <button class="btn btn-success" @onclick="AddRoom"><i class="bi bi-plus-square"></i>&ensp; Ajouter une salle</button>
+        <div class="row mt-3 text-center">
+            <button class="btn btn-success btn-sm" @onclick="AddRoom"><i class="bi bi-plus-square"></i>&ensp; Ajouter une salle</button>
         </div>
 
         @if (RoomToEdit != null)
@@ -134,4 +136,49 @@
         }
 
     </div>
+
+    <!-- Bannière publicitaire -->
+    <div class="mobile-ad-banner">
+        <a href="/">
+            Téléchargez notre application mobile pour plus de fonctionnalités !
+        </a>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>À propos de nous</h4>
+                    <p>Votre plateforme de réservation de salles de sport pour un mode de vie actif et sain.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contact</h4>
+                    <address>
+                        <p>Adresse de votre entreprise</p>
+                        <p>Email : contact@votreserveausport.com</p>
+                        <p>Téléphone : +33 123 456 789</p>
+                    </address>
+                </div>
+                <div class="col-md-4">
+                    <h4>Liens rapides</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/services">Services</a></li>
+                        <li><a href="/tarifs">Tarifs</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center">
+                        © 2023 Votre Plateforme de Réservation de Salle de Sport. Tous droits réservés.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
 </div>

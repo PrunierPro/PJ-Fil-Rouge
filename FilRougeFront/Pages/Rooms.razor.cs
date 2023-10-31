@@ -31,7 +31,7 @@ namespace FilRougeFront.Pages
             sallesDeSport = await roomService.GetAll();
             LoadingMessage = "";
             User = await _localStorage.GetItemAsync<User>("user");
-            IsAdminMode = User is not null ? User.IsAdmin : false;
+            IsAdminMode = User is not null ? User.IsAdmin : false;      
         }
 
         private void EditRoom(Room room)
@@ -101,6 +101,11 @@ namespace FilRougeFront.Pages
             await _localStorage.RemoveItemAsync("user");
             Navigator.NavigateTo(Navigator.Uri, forceLoad: true); //actualiser après déconnexion
         }
+
+        private string headerStyle = "opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease;";
+
+                           
+        
     }
 }
 
