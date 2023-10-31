@@ -56,8 +56,8 @@ namespace FilRougeApi.Repositories
             if (sessionFromDb == null)
                 return false;
 
-            if (sessionFromDb.Room != session.Room)
-                sessionFromDb.Room = session.Room;
+            //if (sessionFromDb.Room != session.Room)
+            //    sessionFromDb.Room = session.Room;
             if (sessionFromDb.RoomId != session.RoomId)
                 sessionFromDb.RoomId = session.RoomId;
             if (sessionFromDb.StartTime != session.StartTime)

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231027082917_updateRoom")]
-    partial class updateRoom
+    [Migration("20231031092524_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,38 @@ namespace FilRougeApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Activities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Fitness"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Yoga"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Danse"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Zumba"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Pilates"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Cardio"
+                        });
                 });
 
             modelBuilder.Entity("FilRougeCore.Models.Comment", b =>
@@ -85,6 +117,40 @@ namespace FilRougeApi.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Comments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Message = "Message Comment 1 ...",
+                            Rating = 2,
+                            SessionId = 1,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Message = "Message Comment 2 ...",
+                            Rating = 3,
+                            SessionId = 1,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Message = "Message Comment 3 ...",
+                            Rating = 4,
+                            SessionId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Message = "Message Comment 4 ...",
+                            Rating = 5,
+                            SessionId = 2,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("FilRougeCore.Models.Room", b =>
@@ -99,7 +165,6 @@ namespace FilRougeApi.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Location")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -109,6 +174,22 @@ namespace FilRougeApi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageURL = "/images/yoga.PNG",
+                            Location = "1er étage - 4 rue tartempion Lille",
+                            Name = "Salle1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImageURL = "/images/fitness.PNG",
+                            Location = "RDC - 4 rue tartempion Lille",
+                            Name = "Salle2"
+                        });
                 });
 
             modelBuilder.Entity("FilRougeCore.Models.Schedule", b =>
@@ -137,6 +218,40 @@ namespace FilRougeApi.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Schedules");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CloseTime = new DateTime(1900, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = "Monday",
+                            OpenTime = new DateTime(1900, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CloseTime = new DateTime(1900, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = "Tuesday",
+                            OpenTime = new DateTime(1900, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CloseTime = new DateTime(1900, 1, 1, 20, 0, 0, 0, DateTimeKind.Local),
+                            Day = "Monday",
+                            OpenTime = new DateTime(1900, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoomId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CloseTime = new DateTime(1900, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            Day = "Tuesday",
+                            OpenTime = new DateTime(1900, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoomId = 1
+                        });
                 });
 
             modelBuilder.Entity("FilRougeCore.Models.Session", b =>
@@ -161,6 +276,22 @@ namespace FilRougeApi.Migrations
                     b.HasIndex("RoomId");
 
                     b.ToTable("Sessions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EndTime = new DateTime(2023, 11, 27, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoomId = 1,
+                            StartTime = new DateTime(2023, 11, 27, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            EndTime = new DateTime(2023, 11, 28, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoomId = 2,
+                            StartTime = new DateTime(2023, 11, 28, 8, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("FilRougeCore.Models.User", b =>

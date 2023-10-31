@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FilRougeCore.Models;
+using FilRougeCore.Data;
 
 namespace FilRougeApi.Data
 {
@@ -43,8 +44,15 @@ namespace FilRougeApi.Data
             modelBuilder.Entity<Session>().HasMany(e => e.Comments).WithOne(e => e.Session).HasForeignKey(e => e.SessionId).HasPrincipalKey(e => e.Id);
             modelBuilder.Entity<Room>().HasMany(e => e.Schedules).WithOne(e => e.Room).HasForeignKey(e => e.RoomId).HasPrincipalKey(e => e.Id);
             modelBuilder.Entity<Room>().HasMany(e => e.Activities).WithMany(e => e.Rooms);
+
             modelBuilder.Entity<User>().HasData(adminRoot);
             modelBuilder.Entity<User>().HasData(defaultUser);
+            
+            modelBuilder.Entity<Room>().HasData(InitialRoom.rooms);
+            modelBuilder.Entity<Activity>().HasData(InitialRoom.activities);
+            modelBuilder.Entity<Schedule>().HasData(InitialRoom.schedules);
+            modelBuilder.Entity<Session>().HasData(InitialRoom.sessions);
+            modelBuilder.Entity<Comment>().HasData(InitialRoom.comments);
         }
     }
 }

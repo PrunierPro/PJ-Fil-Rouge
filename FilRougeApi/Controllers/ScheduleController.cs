@@ -33,7 +33,7 @@ namespace FilRougeApi.Controllers
             return Ok(schedule);
         }
 
-        [HttpGet("room/{room}")]
+        [HttpGet("room/{roomId}")]
         public async Task<IActionResult> GetByRoom(int roomId)
         {
             return Ok(await _repository.GetAll(s => s.RoomId == roomId));

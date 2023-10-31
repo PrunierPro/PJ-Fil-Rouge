@@ -56,8 +56,8 @@ namespace FilRougeApi.Repositories
             if (scheduleFromDb == null)
                 return false;
 
-            if (scheduleFromDb.Room != schedule.Room)
-                scheduleFromDb.Room = schedule.Room;
+            //if (scheduleFromDb.Room != schedule.Room)
+            //    scheduleFromDb.Room = schedule.Room;
             if (scheduleFromDb.RoomId != schedule.RoomId)
                 scheduleFromDb.RoomId = schedule.RoomId;
             if (scheduleFromDb.OpenTime != schedule.OpenTime)

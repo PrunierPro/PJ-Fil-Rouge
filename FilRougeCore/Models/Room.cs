@@ -14,7 +14,6 @@ namespace FilRougeCore.Models
         public List<Schedule> Schedules { get; set; } = new List<Schedule>();
         [Required]
         public string? Name { get; set; }
-        [Required]
         public string? Location { get; set; }
         public List<Activity> Activities { get; set; } = new List<Activity>();
         public string? ImageURL { get; set; }
