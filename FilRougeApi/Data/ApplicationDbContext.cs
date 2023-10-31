@@ -32,7 +32,7 @@ namespace FilRougeApi.Data
             {
                 Id = 2,
                 FirstName = "Default",
-                LastName = "User",
+                LastName = "USER",
                 PhoneNumber = "0202020202",
                 Address = "10 rue tartempion 55555 Turlututu",
                 Email = "defaultuser@email.com",

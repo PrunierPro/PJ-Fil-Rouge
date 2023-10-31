@@ -43,7 +43,7 @@ namespace FilRougeFront.Services
         public async Task<bool> Put(Activity activity)
         {
             var stringActivity = JsonConvert.SerializeObject(activity);
-            var request = new HttpRequestMessage(HttpMethod.Put, _baseApiRoute);
+            var request = new HttpRequestMessage(HttpMethod.Put, _baseApiRoute + $"/{activity.Id}");
             request.Content = new StringContent(stringActivity, Encoding.UTF8, "application/json");
             return await SendRequest(request);
         }

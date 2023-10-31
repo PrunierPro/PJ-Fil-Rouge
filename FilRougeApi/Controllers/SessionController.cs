@@ -43,6 +43,7 @@ namespace FilRougeApi.Controllers
         [Authorize(Roles = $"{Constants.RoleUser}, {Constants.RoleAdmin}")]
         public async Task<IActionResult> Add([FromBody] Session session)
         {
+
             var sessionId = await _repository.Add(session);
 
             if (sessionId > 0)

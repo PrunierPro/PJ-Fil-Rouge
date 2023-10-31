@@ -1,6 +1,9 @@
 ﻿@page "/Room/{roomId:int}"
 @using FilRougeCore.Models;
+@using FilRougeFront.DTOs;
 @using FilRougeFront.Services;
+@inject Blazored.LocalStorage.ILocalStorageService _localStorage;
+@inject NavigationManager Navigator;
 
 <div class="container">
     <h3>Détails de la salle de sport</h3>
@@ -26,7 +29,7 @@
                 <div class="row">
                 </div>
                 <div class="row">
-                    <div class="col-sm" >
+                    <div class="col-sm">
                         <p class="text-warning text-uppercase font-weight-bold">Horaires :</p>
                     </div>
                     <div class="row">
@@ -47,7 +50,63 @@
                     </div>
                 </div>
             </div>
+            @if (Sessions.Count > 0)
+            {
+                <div class="container">
+                    <h4>Séances: </h4>
+                    @for (int i = 0; i < Sessions.Count; i++)
+                    {
+                        Session tmp = Sessions[i];
+                        <div class="row">
+                            <div class="col-sm">
+                                <a href="@(Navigator.BaseUri)session/@(tmp.Id)">Séance No. @(tmp.Id)</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            @if (User is not null)
+            {
+                @if (SessionEdit is null)
+                {
+                    <div class="card-footer">
+                        <button class="btn btn-primary" @onclick="CreateSession">Reserver une séance dans cette salle</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="card-footer">
+                        <EditForm Model="SessionEdit" OnValidSubmit="SubmitSession">
+                            <DataAnnotationsValidator />
+
+                            <div class="form-row">
+                                <div class="form-group" style="width:100%">
+                                    <label for="starttime">Heure de début:</label>
+                                    <input type="datetime-local" class="form-control" id="starttime" @bind-value="SessionEdit.StartTime" />
+                                    <ValidationMessage For="() => SessionEdit.StartTime" />
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group" style="width:100%">
+                                    <label for="endtime">Heure de fin:</label>
+                                    <input type="datetime-local" class="form-control" id="endtime" @bind-value="SessionEdit.EndTime" />
+                                    <ValidationMessage For="() => SessionEdit.EndTime" />
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <button type="submit" class="btn btn-primary">Poster</button>
+                            </div>
+
+                        </EditForm>
+                    </div>
+                }
+
+            }
         </div>
+
     }
     else
     {
@@ -63,9 +122,42 @@
 
     [Inject]
     public IRoomService roomService { get; set; }
+    [Inject]
+    public SessionService sessionService { get; set; }
+
+    public List<Session> Sessions { get; set; } = new List<Session>();
+
+    private User? User { get; set; }
+    private SessionEditDTO SessionEdit { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         room = await roomService.Get(roomId);
+        User = await _localStorage.GetItemAsync<User>("user");
+        var sessionList = await sessionService.GetAll();
+        Sessions = sessionList.FindAll(s => s.RoomId == roomId);
+    }
+
+    private async Task CreateSession()
+    {
+        SessionEdit = new SessionEditDTO()
+            {
+                RoomId = roomId,
+                StartTime = DateTime.Now,
+                EndTime = DateTime.Now
+            };
+    }
+
+    private async Task SubmitSession()
+    {
+        var session = new Session()
+            {
+                RoomId = SessionEdit.RoomId,
+                StartTime = SessionEdit.StartTime,
+                EndTime = SessionEdit.EndTime
+            };
+        await sessionService.Post(session);
+        Sessions.Add(session);
+        StateHasChanged();
     }
 }

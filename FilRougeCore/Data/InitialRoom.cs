@@ -110,7 +110,7 @@ namespace FilRougeCore.Data
                 StartTime = new DateTime(2023,11,27,8,0,0), 
                 EndTime = new DateTime(2023,11,27,9,0,0),
                 Users = new List<User>(){
-                    new User{ Id = 2,FirstName = "Default",LastName = "User",PhoneNumber = "0202020202",
+                    new User{ Id = 2,FirstName = "Default",LastName = "USER",PhoneNumber = "0202020202",
                         Address = "10 rue tartempion 55555 Turlututu",Email = "defaultuser@email.com",
                         PassWord = "PAss00++",IsAdmin = false
                     }
@@ -124,7 +124,7 @@ namespace FilRougeCore.Data
                 StartTime = new DateTime(2023,11,28,8,0,0), 
                 EndTime = new DateTime(2023,11,28,9,0,0),
                 Users = new List<User>(){
-                    new User{ Id = 2,FirstName = "Default",LastName = "User",PhoneNumber = "0202020202",
+                    new User{ Id = 2,FirstName = "Default",LastName = "USER",PhoneNumber = "0202020202",
                         Address = "10 rue tartempion 55555 Turlututu",Email = "defaultuser@email.com",
                         PassWord = "PAss00++",IsAdmin = false}
                 },

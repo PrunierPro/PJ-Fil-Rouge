@@ -49,7 +49,7 @@ namespace FilRougeFront.Services
         public async Task<bool> Put(Comment comment)
         {
             var stringComment = JsonConvert.SerializeObject(comment);
-            var request = new HttpRequestMessage(HttpMethod.Put, _baseApiRoute);
+            var request = new HttpRequestMessage(HttpMethod.Put, _baseApiRoute + $"/{comment.Id}");
             request.Content = new StringContent(stringComment, Encoding.UTF8, "application/json");
             return await SendRequest(request);
         }
