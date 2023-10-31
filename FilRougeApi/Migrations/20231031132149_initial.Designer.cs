@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilRougeApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231031125132_ManyToManyFix")]
-    partial class ManyToManyFix
+    [Migration("20231031132149_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

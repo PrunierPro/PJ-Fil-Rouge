@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FilRougeApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -64,21 +64,21 @@ namespace FilRougeApi.Migrations
                 name: "ActivityRoom",
                 columns: table => new
                 {
-                    ActivitiesId = table.Column<int>(type: "int", nullable: false),
-                    RoomsId = table.Column<int>(type: "int", nullable: false)
+                    ActivityId = table.Column<int>(type: "int", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ActivityRoom", x => new { x.ActivitiesId, x.RoomsId });
+                    table.PrimaryKey("PK_ActivityRoom", x => new { x.ActivityId, x.RoomId });
                     table.ForeignKey(
-                        name: "FK_ActivityRoom_Activities_ActivitiesId",
-                        column: x => x.ActivitiesId,
+                        name: "FK_ActivityRoom_Activities_ActivityId",
+                        column: x => x.ActivityId,
                         principalTable: "Activities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ActivityRoom_Rooms_RoomsId",
-                        column: x => x.RoomsId,
+                        name: "FK_ActivityRoom_Rooms_RoomId",
+                        column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -156,24 +156,24 @@ namespace FilRougeApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SessionUser",
+                name: "SessionsUser",
                 columns: table => new
                 {
-                    SessionsId = table.Column<int>(type: "int", nullable: false),
-                    UsersId = table.Column<int>(type: "int", nullable: false)
+                    SessionId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SessionUser", x => new { x.SessionsId, x.UsersId });
+                    table.PrimaryKey("PK_SessionsUser", x => new { x.SessionId, x.UserId });
                     table.ForeignKey(
-                        name: "FK_SessionUser_Sessions_SessionsId",
-                        column: x => x.SessionsId,
+                        name: "FK_SessionsUser_Sessions_SessionId",
+                        column: x => x.SessionId,
                         principalTable: "Sessions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_SessionUser_Users_UsersId",
-                        column: x => x.UsersId,
+                        name: "FK_SessionsUser_Users_UserId",
+                        column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -211,6 +211,19 @@ namespace FilRougeApi.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ActivityRoom",
+                columns: new[] { "ActivityId", "RoomId" },
+                values: new object[,]
+                {
+                    { 1, 2 },
+                    { 2, 1 },
+                    { 3, 1 },
+                    { 4, 1 },
+                    { 5, 2 },
+                    { 6, 2 }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Schedules",
                 columns: new[] { "Id", "CloseTime", "Day", "OpenTime", "RoomId" },
                 values: new object[,]
@@ -241,10 +254,19 @@ namespace FilRougeApi.Migrations
                     { 4, "Message Comment 4 ...", 5, 2, 2 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "SessionsUser",
+                columns: new[] { "SessionId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 2 },
+                    { 2, 2 }
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_ActivityRoom_RoomsId",
+                name: "IX_ActivityRoom_RoomId",
                 table: "ActivityRoom",
-                column: "RoomsId");
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Comments_SessionId",
@@ -267,9 +289,9 @@ namespace FilRougeApi.Migrations
                 column: "RoomId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SessionUser_UsersId",
-                table: "SessionUser",
-                column: "UsersId");
+                name: "IX_SessionsUser_UserId",
+                table: "SessionsUser",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -285,7 +307,7 @@ namespace FilRougeApi.Migrations
                 name: "Schedules");
 
             migrationBuilder.DropTable(
-                name: "SessionUser");
+                name: "SessionsUser");
 
             migrationBuilder.DropTable(
                 name: "Activities");
