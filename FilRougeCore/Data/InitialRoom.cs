@@ -22,8 +22,9 @@ namespace FilRougeCore.Data
                         CloseTime = new DateTime(1900,1,1, 20, 0, 0)
                     }
                 },
-                ImageURL = "/images/yoga.PNG"  },
-                new Room{ Id =2, Name ="Salle2", Location = "RDC - 4 rue tartempion Lille", Activities = new List<Activity>(){
+                ImageURL = "/images/yoga.PNG"  
+            },
+            new Room{ Id =2, Name ="Salle2", Location = "RDC - 4 rue tartempion Lille", Activities = new List<Activity>(){
                     new Activity{ Id =1, Name ="Fitness"},
                     new Activity{ Id =5, Name ="Pilates"},
                     new Activity{ Id =6, Name ="Cardio"}
@@ -38,7 +39,7 @@ namespace FilRougeCore.Data
                     }
                 },
                 ImageURL = "/images/fitness.PNG"  }
-        };
+            };
 
         public static readonly List<Room> rooms = new List<Room>()
         {
@@ -46,6 +47,33 @@ namespace FilRougeCore.Data
             new Room{ Id =2, Name ="Salle2", Location = "RDC - 4 rue tartempion Lille", ImageURL = "/images/fitness.PNG" },
         };
 
+        public static readonly List<Activity> completeActivities = new List<Activity>()
+        {
+            new Activity{ Id =1, Name ="Fitness", Rooms= new List<Room>(){
+                    new Room{ Id = 2} 
+                } 
+            },
+            new Activity{ Id =2, Name ="Yoga", Rooms= new List<Room>(){
+                    new Room{Id =1} 
+                }
+            },
+            new Activity{ Id =3, Name ="Danse", Rooms= new List<Room>(){
+                    new Room{Id =1} 
+                }
+            },
+            new Activity{ Id =4, Name ="Zumba", Rooms= new List<Room>(){
+                    new Room{Id =1} 
+                }
+            },
+            new Activity{ Id =5, Name ="Pilates", Rooms= new List<Room>(){
+                    new Room{Id = 2} 
+                }
+            },
+            new Activity{ Id =6, Name ="Cardio", Rooms= new List<Room>(){
+                    new Room{Id = 2} 
+                }
+            }
+        }; 
         public static readonly List<Activity> activities = new List<Activity>()
         {
             new Activity{ Id =1, Name ="Fitness"},

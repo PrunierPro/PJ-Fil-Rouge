@@ -10,13 +10,43 @@
         <div class="card">
             <h4>Nom de la salle : @room.Name</h4>
             <p>Localisation : @room.Location</p>
-            <p>Image : <img src="@room.ImageURL" alt="Image de la salle de sport" /></p>
-            <p>Activités : </p>
-            @foreach (var item in @room.Activities)
-            {
-                <p> " - " + item.Name</p>
-            }
-            <p>Horaires : @room.Schedules</p>
+            <p><img src="@room.ImageURL" alt="Image de la salle de sport" /></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <p class="text-warning text-uppercase font-weight-bold">Activités :</p>
+                    </div>
+                    @foreach (var item in @room.Activities)
+                    {
+                        <div class="col-sm">
+                            @item.Name
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                </div>
+                <div class="row">
+                    <div class="col-sm" >
+                        <p class="text-warning text-uppercase font-weight-bold">Horaires :</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                        </div>
+                        @foreach (var item in @room.Schedules)
+                        {
+                            <div class="col-sm">
+                                @item.Day
+                            </div>
+                            <div class="col-sm">
+                                @(item.OpenTime.ToShortTimeString())
+                            </div>
+                            <div class="col-sm">
+                                @(item.CloseTime.ToShortTimeString())
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
         </div>
     }
     else
