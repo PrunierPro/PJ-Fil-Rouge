@@ -39,15 +39,39 @@ namespace FilRougeApi.Data
                 PassWord = "UEFzczAwKytsYSBjbMOpIHN1cGVyIHNlY3LDqHRlIGRlIGxhIHBva2Vtb24gYXBp", //PAss00++
                 IsAdmin = false
             };
-            modelBuilder.Entity<User>().HasMany(e => e.Sessions).WithMany(e => e.Users);
-            modelBuilder.Entity<Session>().HasMany(e => e.Users).WithMany(e => e.Sessions);
+            modelBuilder.Entity<User>().HasMany(e => e.Sessions).WithMany(e => e.Users).UsingEntity<Dictionary<string, object>>(
+            "SessionsUser",
+                r => r.HasOne<Session>().WithMany().HasForeignKey("SessionId"),
+                l => l.HasOne<User>().WithMany().HasForeignKey("UserId"),
+                je =>
+                {
+                    je.HasKey("SessionId", "UserId");
+                    je.HasData(
+                             new { SessionId = 1, UserId = 2 },
+                             new { SessionId = 2, UserId = 2 });
+                });
+            //modelBuilder.Entity<Session>().HasMany(e => e.Users).WithMany(e => e.Sessions);
             modelBuilder.Entity<Session>().HasMany(e => e.Comments).WithOne(e => e.Session).HasForeignKey(e => e.SessionId).HasPrincipalKey(e => e.Id);
             modelBuilder.Entity<Room>().HasMany(e => e.Schedules).WithOne(e => e.Room).HasForeignKey(e => e.RoomId).HasPrincipalKey(e => e.Id);
-            modelBuilder.Entity<Room>().HasMany(e => e.Activities).WithMany(e => e.Rooms);
+            modelBuilder.Entity<Room>().HasMany(e => e.Activities).WithMany(e => e.Rooms).UsingEntity<Dictionary<string, object>>(
+                "ActivityRoom",
+                r => r.HasOne<Activity>().WithMany().HasForeignKey("ActivityId"),
+                l => l.HasOne<Room>().WithMany().HasForeignKey("RoomId"),
+                je =>
+                {
+                    je.HasKey("ActivityId", "RoomId");
+                    je.HasData(
+                        new { ActivityId = 1, RoomId = 2 },
+                        new { ActivityId = 2, RoomId = 1 },
+                        new { ActivityId = 3, RoomId = 1 },
+                        new { ActivityId = 4, RoomId = 1 },
+                        new { ActivityId = 5, RoomId = 2 },
+                        new { ActivityId = 6, RoomId = 2 });
+                });
 
             modelBuilder.Entity<User>().HasData(adminRoot);
             modelBuilder.Entity<User>().HasData(defaultUser);
-            
+
             modelBuilder.Entity<Room>().HasData(InitialRoom.rooms);
             modelBuilder.Entity<Activity>().HasData(InitialRoom.activities);
             modelBuilder.Entity<Schedule>().HasData(InitialRoom.schedules);
