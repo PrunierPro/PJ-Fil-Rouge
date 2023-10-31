@@ -6,6 +6,12 @@
 
 main {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+article {
+    flex: 1;
 }
 
 .sidebar {
@@ -79,3 +85,39 @@ main {
         padding-right: 1.5rem !important;
     }
 }
+
+.footer {
+    background: rgb(0,172,255);
+    background: linear-gradient(90deg, rgba(0,172,255,1) 21%, rgba(9,9,121,1) 37%, rgba(2,0,36,1) 97%);
+    color: #fff;
+    padding: 20px 0;
+}
+
+
+    .footer a {
+        color: #007BFF;
+        text-decoration: none;
+    }
+
+
+    .footer h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+
+    .footer address p {
+        margin: 0;
+    }
+
+
+    .footer hr {
+        border-color: #007BFF;
+        margin: 10px 0;
+    }
+
+
+    .footer p.text-center {
+        font-size: 0.8rem;
+        margin: 0;
+    }

@@ -38,7 +38,7 @@
             else if (success)
             {
                 <h3>Connexion OK !!! Vous @((LoggedIn.IsAdmin ? "êtes admin" : @"n'êtes pas admin")).</h3>
-                <a href="@Navigator.BaseUri" class="btn btn-success">Retour ...</a>
+                <button class="btn btn-success" @onclick="Return">Retour ...</button>
             }
             else if (LoggedIn is not null)
             {
@@ -87,5 +87,10 @@
             await LocalStorage.SetItemAsync("jwt", result.Token);
         }
         StateHasChanged();
+    }
+
+    private void Return()
+    {
+        Navigator.NavigateTo(Navigator.BaseUri, forceLoad: true);
     }
 }
